@@ -18,7 +18,9 @@ type Graph = {
 // Generate graph of dependencies
 
 export function createGraph({ generates, cwd }: { generates: { [filename: string]: Types.ConfiguredOutput }; cwd: string }) {
-  const graph = new DepGraph<Graph>();
+  const graph = new DepGraph<Graph>({
+    circular: false,
+  });
 
   for (const output in generates) {
     if (generates.hasOwnProperty(output)) {
